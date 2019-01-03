@@ -904,14 +904,14 @@ blackChoices;
 piece16[MoveChoices]=
 Complement[
 piece16[MoveChoices],
-Union@Flatten[DeleteCases[blackoptionlist[#]&/@Select[#[id]&/@Select[Pieces,!#[status]===pawn&],#>16&],_Missing],1],
+Union@Flatten[DeleteCases[blackoptionlist[#]&/@Select[#[id]&/@Select[Most@Rest@Pieces,!#[status]===pawn&],#>16&],_Missing],1],
 bPawnStrikes
 ];
 
 piece32[MoveChoices]=
 Complement[
 piece32[MoveChoices],
-Union@Flatten[DeleteCases[whiteoptionlist[#]&/@Select[#[id]&/@Select[Pieces,!#[status]===pawn&],#< 17&],_Missing],1],
+Union@Flatten[DeleteCases[whiteoptionlist[#]&/@Select[#[id]&/@Select[Most@Rest@Pieces,!#[status]===pawn&],#< 17&],_Missing],1],
 wPawnStrikes
 ];
 
