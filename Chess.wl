@@ -265,9 +265,9 @@ ShortPGN[pgn_,no_]:=
 Importing piece images
 *)
 
-packageDir = $AddOnsDirectory<>"\\Applications\\";
+packageDir = DirectoryName[$InputFileName];
 
-If[FileExistsQ[packageDir<>"pieceImages.mx"],
+If[FileExistsQ[FileNameJoin[{packageDir, "pieceImages.mx"}]],
   Get[packageDir<>"pieceImages.mx"],
   
   wKimage=Import["https://marcelk.net/chess/pieces/merida/80/WhiteKing.png"];
@@ -418,7 +418,7 @@ Block[{},
       Dynamic,     Dynamic[Chessboard[ShowBoard -> showc, ImageSize -> bsizec, PieceSize -> psizec, BoardColour -> colc, ShowPieces -> inclc, PawnConvert -> convc, ShowPGN -> pgnc, Interact-> interc]],
       Interactive, interactive[ShowBoard -> showc, ImageSize -> bsizec, PieceSize -> psizec, BoardColour -> colc, ShowPieces -> inclc, PawnConvert -> convc, ShowPGN -> pgnc, Interact-> True],
       
-      _,           Column[{Row[{
+      _,           Column[{Row[Flatten@{
                       Button["Restart",Startposition],
                       
                       Button["Back",
@@ -481,7 +481,8 @@ Block[{},
                       
                       
                       If[pgnc,
-                        Button["Next", If[Length[showc] > Length[Movelist], Move[MoveFromPGN[showc[[Length[Movelist]+1]]][[1]]]]],
+                        {Button["Next", If[Length[showc] > Length[Movelist], Move[MoveFromPGN[showc[[Length[Movelist]+1]]][[1]]]]],
+                        Button["End", Move[MoveFromPGN[#][[1]]]&/@ Drop[showc, Length[Movelist]]]},
                         Button["Random Move", Move[RandomMove]]
                       ]
                       
