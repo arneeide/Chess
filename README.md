@@ -16,8 +16,8 @@ Interactive use of the chessboard is included, also a preliminary PGN reading fe
 ## Missing parts
 A number of issues are still to be solved:
 
-- The king is not allowed to move into an empty cell covered by pieces of opposite colour. However, the king are able to take pieces even when these are defended.
-- The game is not ended when the king is taken.
+- The king is not allowed to move into an empty cell covered by pieces of opposite colour. However, the king is able to take pieces even when these are defended. Also, own pieces shadowing for potential attacks on the king are not hindered in moving, consequently putting the king in an illegal position.
+- The game is not ended when the king is taken (even though it should be easy to implement :)
 - There is no evaluation of the game.
 
 ## Help is requested
