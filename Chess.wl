@@ -517,7 +517,8 @@ Module[{pgn},
     ] <> Coord[#[[2,1]]]& /@ Movelist);
   pgn= ReplacePart[pgn,(#/.{List -> Rule})&/@Transpose[{First/@Position[Movelist,"0-0"] ,Table["0-0",Length[First /@ Position[Movelist,"0-0"]]]}]];
   pgn= ReplacePart[pgn,(#/.{List -> Rule})&/@Transpose[{First/@Position[Movelist,"0-0-0"] ,Table["0-0-0",Length[First /@ Position[Movelist,"0-0-0"]]]}]];
-  StringJoin[StringRiffle[Flatten@Riffle[ToString[#]<>"."&/@Range[Ceiling[Length[pgn]/2]],Partition[pgn,2]], " "]]<>If[OddQ[Length[pgn]]," "<>Last[pgn],""]
+  pgn = StringJoin[StringRiffle[Flatten@Riffle[ToString[#]<>"."&/@Range[Ceiling[Length[pgn]/2]],Partition[pgn,2]], " "]]<>If[OddQ[Length[pgn]]," "<>Last[pgn],""]
+  StringReplace[pgn, ". " -> "."]
 ]
 
 (*
