@@ -21,7 +21,7 @@ A number of issues are still to be solved:
 - There is no evaluation of the game.
 
 ## Observed bugs
-- The 'back'-button in interactive modus does not convert officers (queens) back to pawns...
+- The 'back'-button in interactive modus does not convert major pieces (queens) back to pawns...
 
 ## Help is requested
 Any contributions in improving existing code and adding features are appreciated. The package is free to be used as long as no commercial interests are involved.
