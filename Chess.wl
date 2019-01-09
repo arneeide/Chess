@@ -6,7 +6,7 @@
    
 *)
 (* :Context: Chess`     *)
-(* :Package Version: 0.1                    *)
+(* :Package Version: 0.2                    *)
 (* :Copyright: Arne Eide                    *)
 (* :History:                                *)
 (* :Keywords:                               *)
@@ -47,10 +47,10 @@ conv::usage = ""
 pgn::usage = ""
 inter::usage = ""
 
+MakePGNfiles::usage = "MakePGNfiles[file] imports PGN file."
+PGNfile::usage = "PGNfile[no] displays PGNfile number no after being imported by MakePGNfiles."
+PGNconvert::usage = "PGNconvert[PGN] converts a PGN to readable format for MoveFromPGN."
 MoveFromPGN::usage = ""
-PGNconvert::usage = ""
-PGNlisting::usage = ""
-ShortPGN::usage = ""
 
 Static::usage = ""
 
@@ -121,11 +121,11 @@ piece31::usage = ""
 piece32::usage = ""
 piece33::usage = ""
 
-Pieces::usage = ""
-wPieces::usage = ""
-bPieces::usage = ""
+Pieces::usage = "All pieces of the chessboard."
+wPieces::usage = "White pieces."
+bPieces::usage = "Black pieces."
 
-Movelist::usage = ""
+Movelist::usage = "List of all chess moves."
 Capturelist::usage = ""
 
 place::usage = ""
@@ -177,23 +177,39 @@ Read PGN (experimental)
 MoveFromPGN[move_]:=
 Quiet@Block[{},
 
-(*  Ordinary officer moves {B,3,3}, {K,1,2}, etc.  AND officers take pieces {B,x,3,3}, {K,x,1,2}, etc.*)
+
+
+(*  Ordinary major pieces moves {B,3,3}, {K,1,2}, etc.  AND major pieces take pieces {B,x,3,3}, {K,x,1,2}, etc.*)
 
 If[(Length[move]===3 && MemberQ[{king,queen,rook,bishop,knight},move[[1]]]) || (Length[move]===4 && MemberQ[{king,queen,rook,bishop,knight},move[[1]]] && move[[2]]===Global`x),
 test={#[id],Take[move,-2]}&/@Select[
 If[EvenQ[Length[Movelist]],Take[Pieces,{9,17}],Take[Pieces,{26,33}]],#[status]===First[move] &&MemberQ[#[MoveChoices],Take[move,-2]]&]
 ];
 
-(*  Officers take pieces {B,x,3,3}, {K,x,1,2}, etc.  *)
+(*  Major pieces take pieces {B,x,3,3}, {K,x,1,2}, etc.  *)
 
 If[Length[move]===4 && MemberQ[{king,queen,rook,bishop,knight},move[[1]]] && MemberQ[{Global`a,Global`b,Global`c,Global`d,Global`e,Global`f,Global`g,Global`h},move[[2]]],
 test={#[id],Take[move,-2]}&/@Select[
 If[EvenQ[Length[Movelist]],Take[Pieces,{9,17}],Take[Pieces,{26,33}]],#[status]===First[move] && First@Last[#[pos]]===Switch[move[[2]], Global`a, 1, Global`b, 2, Global`c, 3, Global`d, 4, Global`e, 5, Global`f, 6, Global`g, 7, Global`h, 8]&&MemberQ[#[MoveChoices],Take[move,-2]]&]
 ];
 
-(*  Identified officer moves {B,5,3,3}, {R,2,1,2}, etc.  *)
+(*  Identified major pieces moves {B,5,3,3}, {R,2,1,2}, etc.  *)
 
 If[Length[move]===4 && MemberQ[{king,queen,rook,bishop,knight},move[[1]]]&&MemberQ[Range[8],move[[2]]],
+test={#[id],Take[move,-2]}&/@Select[
+If[EvenQ[Length[Movelist]],Take[Pieces,{9,17}],Take[Pieces,{26,33}]],#[status]===First[move] && Last@Last[#[pos]]===move[[2]]&&MemberQ[#[MoveChoices],Take[move,-2]]&]
+];
+
+(*  Major pieces take pieces {B,a,x,3,3}, etc.  *)
+
+If[Length[move]===5 && MemberQ[{king,queen,rook,bishop,knight},move[[1]]] && MemberQ[{Global`a,Global`b,Global`c,Global`d,Global`e,Global`f,Global`g,Global`h},move[[2]]],
+test={#[id],Take[move,-2]}&/@Select[
+If[EvenQ[Length[Movelist]],Take[Pieces,{9,17}],Take[Pieces,{26,33}]],#[status]===First[move] && First@Last[#[pos]]===Switch[move[[2]], Global`a, 1, Global`b, 2, Global`c, 3, Global`d, 4, Global`e, 5, Global`f, 6, Global`g, 7, Global`h, 8]&&MemberQ[#[MoveChoices],Take[move,-2]]&]
+];
+
+(*  Identified major pieces moves {B,5,x,3,3}, etc.  *)
+
+If[Length[move]===5 && MemberQ[{king,queen,rook,bishop,knight},move[[1]]]&&MemberQ[Range[8],move[[2]]],
 test={#[id],Take[move,-2]}&/@Select[
 If[EvenQ[Length[Movelist]],Take[Pieces,{9,17}],Take[Pieces,{26,33}]],#[status]===First[move] && Last@Last[#[pos]]===move[[2]]&&MemberQ[#[MoveChoices],Take[move,-2]]&]
 ];
@@ -214,7 +230,7 @@ Length[move] === 4 && MemberQ[{Global`a,Global`b,Global`c,Global`d,Global`e,Glob
 
 (*  ordinary pawn moves and castle  {2, 4}, {0, short}, etc. *)
 
-If[Length[move]===2 &&move[[1]] !=0,
+If[Length[move]===2 && move[[1]] !=0,
 
 test={#[id],move}&/@Select[Pieces,If[EvenQ[Length[Movelist]],0,16]<#[id]<If[EvenQ[Length[Movelist]],9,25] &&MemberQ[#[MoveChoices],move]&],
 
@@ -224,42 +240,54 @@ If[OddQ[Length[Movelist]]&&move==={0,Chess`Private`short},test={{32,{7,8}}}];
 If[OddQ[Length[Movelist]]&&move==={0,Chess`Private`long},test={{32,{3,8}}}];
 
 ];
+(*
+If[Length[move] > 3 && (Last[move]===queen || Last[move]===rook  || Last[move]===bishop  || Last[move]===knight ),
+
+  test={#[id], Take[move,2]}& /@ Select[
+    If[
+      EvenQ[Length[Movelist]], 
+      Take[Pieces,{2,9}],
+      Take[Pieces,{18,26}]
+    ],
+    First@Last[#[pos]] === Switch[First[move], Global`a, 1, Global`b, 2, Global`c, 3, Global`d, 4, Global`e, 5, Global`f, 6, Global`g, 7, Global`h, 8] && MemberQ[#[MoveChoices],Take[move,2]]&]
+
+];
+*)
+
+If[(Last[move]===queen || Last[move]===rook  || Last[move]===bishop  || Last[move]===knight ),
+  test={#[id],{Switch[First[move], Global`a, 1, Global`b, 2, Global`c, 3, Global`d, 4, Global`e, 5, Global`f, 6, Global`g, 7, Global`h, 8],move[[2]]}}&/@Select[
+  Pieces, If[EvenQ[Length[Movelist]],0,16]<#[id]<If[EvenQ[Length[Movelist]],9,25] && MemberQ[#[MoveChoices],
+  {Switch[First[move], Global`a, 1, Global`b, 2, Global`c, 3, Global`d, 4, Global`e, 5, Global`f, 6, Global`g, 7, Global`h, 8],move[[2]]}]&]
+];
 
 test
 ]
 
-PGNconvert[pgn_,no_]:=
-  Block[{linegames = #+{1,-1}& /@ Partition[Flatten[Position[StringSplit[pgn,"\n"],""]],2],test},
-    test = StringSplit[StringJoin[Riffle[Take[StringSplit[pgn,"\n"],linegames[[no]]]," "]],{". " , "  "," ","."}];
+PGNconvert[pgn_]:=
+  Block[{test=pgn},
+    test=StringSplit[StringJoin[Riffle[test," "]],{". " , "  "," ","."}];
     If[IntegerQ[Length[test]/3],
-      test = Partition[test,3],
-      test = Partition[Append[test,""],3]
+      test = Flatten[Rest/@Partition[test,3]],
+      test = Most@Flatten[Rest/@Partition[Append[test,""],3]]
     ];
-    test = If[Last[#]==="+",Most[#],#]& @ Characters[#]& /@ Flatten[Rest /@ test];
-    test = Select[(Join[Take[#,Length[#]-2],Take[#,-2]/.{"a"->"1","b"->"2","c"->"3","d"->"4","e"->"5","f"->"6","g"->"7","h"->"8"}]&/@test),#!={}&];
+    test = If[Last[#]==="+" || Last[#]==="#1" || Last[#]==="#2", Most[#],#]& @ Characters[#]& /@ test;
+    test = Select[(Join[Take[#, Length[#]-2], Take[#,-2]/.{"a"->"1","b"->"2","c"->"3","d"->"4","e"->"5","f"->"6","g"->"7","h"->"8","="->"0"}]&/@test),#!={}&];
     test = test /.{{"O","-","O"}->{0, short},{"O","-","O","-","O"}->{0, long},{"1","/","2","-","1","/","2"}->{},{"0","-","1"}->{},{"1","-","0"}->{},"K"->king,"Q"->queen,"R"->rook,"B"->bishop,"N"->knight};
-    test = ToExpression /@ #& /@ test;
-    Select[test, # != {}&]
+    test = ToExpression /@ #& /@ test
   ]
 
-PGNlisting[pgn_,no_]:=
-  Block[{linegames=#+{1,-1}&/@Partition[Flatten[Position[StringSplit[pgn,"\n"],""]],2]},
-    If[1 <= no <= Length[linegames],
-      Grid[{{
-        Multicolumn[StringSplit[StringJoin[Riffle[Take[StringSplit[pgn,"\n"],linegames[[no]]]," "]],{". " , "  "," ","."}],3,Appearance -> "Horizontal"],
-        "\t",
-        Take[StringSplit[pgn,"\n"],{If[no===1,1,linegames[[no-1,2]]+2],linegames[[no,1]]-2}]//TableForm
-        }},
-        Alignment->Top
-      ]
-    ]
+MakePGNfiles[pgn_]:=
+  Block[{test},
+    test = pgn;
+    Clear[PGNfile];
+    t1=StringSplit[test,"[Event "];
+    t1="[Event "<>t1[[#]]&/@Range[Length[t1]];
+    Print[ToString[Length[t1]]<>" PGN files are available (PGNfile[no])"];
+    PGNfile[i_] := (PGNfile[i] = Association@Append[
+      Flatten[{StringDelete[First[#]," "]->Last[#]}& /@ Most@Select[StringSplit[#,"\""]& /@ StringSplit[t1[[i]],{"[","]"}],#!={"\n"}&]],
+      "PGN" -> Most@StringSplit[StringSplit[t1[[i]],"\n\n"][[2]],{Whitespace,"\n"}]
+    ])
   ]
-  
-ShortPGN[pgn_,no_]:=
-  Block[{linegames=#+{1,-1}&/@Partition[Flatten[Position[StringSplit[pgn,"\n"],""]],2]},
-    If[1 <= no <= Length[linegames],Take[StringSplit[pgn,"\n"],{If[no===1,1,linegames[[no-1,2]]+2],linegames[[no,1]]-2}]//TableForm
-    ]
-  ]  
 
 (*
 Importing piece images
