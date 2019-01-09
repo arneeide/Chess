@@ -1,0 +1,729 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     34090,        721]
+NotebookOptionsPosition[     32684,        688]
+NotebookOutlinePosition[     33031,        703]
+CellTagsIndexPosition[     32988,        700]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Display PGN moves", "Section",
+ CellChangeTimes->{{3.755518000116522*^9, 
+  3.7555180206885986`*^9}},ExpressionUUID->"c3ea2222-f9e7-4758-b001-\
+77719a420cf0"],
+
+Cell[BoxData[
+ RowBox[{"Get", "[", "\"\<Chess`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.7555097679283047`*^9, 3.7555097805935125`*^9}, {
+  3.75557453122464*^9, 3.755574531856986*^9}, {3.755575032889293*^9, 
+  3.7555750340651093`*^9}, {3.7555778684829235`*^9, 3.755577880125458*^9}, {
+  3.7555779790677214`*^9, 3.7555779880904703`*^9}, {3.75583961983428*^9, 
+  3.7558396203140707`*^9}, {3.755840173891745*^9, 3.755840175355791*^9}, {
+  3.7558413491894927`*^9, 3.755841349573268*^9}, {3.7558417122302217`*^9, 
+  3.755841713684415*^9}, {3.755842289145265*^9, 3.75584228953605*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"252768cf-c520-4fdd-8334-1973e2492331"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"kasparov", "=", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{
+     "\"\<http://chessproblem.my-free-games.com/PGN/Kasparov.zip\>\"", ",", 
+      "\"\<*.pgn\>\""}], "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.755511971547679*^9, 3.7555119841852813`*^9}, {
+  3.7555120353358483`*^9, 3.7555120616543226`*^9}, {3.7555121176917324`*^9, 
+  3.7555121585482216`*^9}, {3.7555122857234697`*^9, 3.7555122937708864`*^9}, {
+  3.755538730182578*^9, 3.7555387405177383`*^9}, {3.7555447635002394`*^9, 
+  3.7555447640329056`*^9}, {3.756026274556757*^9, 
+  3.7560262821614227`*^9}},ExpressionUUID->"db3a34a5-fdac-413e-a4bb-\
+fe933588c3d9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MakePGNfiles", "[", "kasparov", "]"}]], "Input",
+ CellChangeTimes->{{3.7558466687079725`*^9, 3.75584666961985*^9}, {
+  3.7560252266157*^9, 3.7560252295230465`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"0f0531bb-cfcd-46b7-81ed-9993f0eb6a54"],
+
+Cell[BoxData["\<\"549 PGN files are available (PGNfile[no])\"\>"], "Print",
+ CellChangeTimes->{3.755846678904095*^9, 3.756025230467496*^9},
+ CellLabel->
+  "During evaluation of \
+In[5]:=",ExpressionUUID->"01b45825-04a0-423d-9228-9b6e9990685f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PGNfile", "[", "540", "]"}]], "Input",
+ CellChangeTimes->{
+  3.755846695505661*^9, {3.7560252362731967`*^9, 3.7560252367928815`*^9}, {
+   3.756026129436863*^9, 3.7560261299555683`*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"68c6df99-afec-443d-acf7-f16a9a1028dc"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"Event\"\>", "\[Rule]", "\<\"KasparovChess GP g/60\"\>"}], ",", 
+   RowBox[{"\<\"Site\"\>", "\[Rule]", "\<\"Internet INT\"\>"}], ",", 
+   RowBox[{"\<\"Date\"\>", "\[Rule]", "\<\"2000.02.13\"\>"}], ",", 
+   RowBox[{"\<\"Round\"\>", "\[Rule]", "\<\"2.2\"\>"}], ",", 
+   RowBox[{"\<\"White\"\>", "\[Rule]", "\<\"Van Wely, Loek\"\>"}], ",", 
+   RowBox[{"\<\"Black\"\>", "\[Rule]", "\<\"Kasparov, Gary\"\>"}], ",", 
+   RowBox[{"\<\"Result\"\>", "\[Rule]", "\<\"0-1\"\>"}], ",", 
+   RowBox[{"\<\"WhiteElo\"\>", "\[Rule]", "\<\"2646\"\>"}], ",", 
+   RowBox[{"\<\"BlackElo\"\>", "\[Rule]", "\<\"2851\"\>"}], ",", 
+   RowBox[{"\<\"ECO\"\>", "\[Rule]", "\<\"D46k\"\>"}], ",", 
+   RowBox[{"\<\"EventDate\"\>", "\[Rule]", "\<\"2000.02.09\"\>"}], ",", 
+   RowBox[{"\<\"PGN\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1.d4\"\>", ",", "\<\"Nf6\"\>", ",", "\<\"2.Nf3\"\>", 
+      ",", "\<\"d5\"\>", ",", "\<\"3.c4\"\>", ",", "\<\"e6\"\>", 
+      ",", "\<\"4.Nc3\"\>", ",", "\<\"c6\"\>", ",", "\<\"5.e3\"\>", 
+      ",", "\<\"Nbd7\"\>", ",", "\<\"6.Qc2\"\>", ",", "\<\"Bd6\"\>", 
+      ",", "\<\"7.Bd3\"\>", ",", "\<\"O-O\"\>", ",", "\<\"8.O-O\"\>", 
+      ",", "\<\"dxc4\"\>", ",", "\<\"9.Bxc4\"\>", ",", "\<\"a6\"\>", 
+      ",", "\<\"10.a4\"\>", ",", "\<\"c5\"\>", ",", "\<\"11.Rd1\"\>", 
+      ",", "\<\"Qc7\"\>", ",", "\<\"12.Ne4\"\>", ",", "\<\"Nxe4\"\>", 
+      ",", "\<\"13.Qxe4\"\>", ",", "\<\"Nf6\"\>", ",", "\<\"14.Qh4\"\>", 
+      ",", "\<\"cxd4\"\>", ",", "\<\"15.\"\>", ",", "\<\"Bd3\"\>", 
+      ",", "\<\"h6\"\>", ",", "\<\"16.e4\"\>", ",", "\<\"Nd7\"\>", 
+      ",", "\<\"17.Bxh6\"\>", ",", "\<\"gxh6\"\>", ",", "\<\"18.Rac1\"\>", 
+      ",", "\<\"Qd8\"\>", ",", "\<\"19.Qxh6\"\>", ",", "\<\"Qf6\"\>", 
+      ",", "\<\"20.Qxf6\"\>", ",", "\<\"Nxf6\"\>", ",", "\<\"21.e5\"\>", 
+      ",", "\<\"Be7\"\>", ",", "\<\"22.exf6\"\>", ",", "\<\"Bxf6\"\>", 
+      ",", "\<\"23.Be4\"\>", ",", "\<\"Rd8\"\>", ",", "\<\"24.g4\"\>", 
+      ",", "\<\"Rb8\"\>", ",", "\<\"25.g5\"\>", ",", "\<\"Bh8\"\>", 
+      ",", "\<\"26.Ne1\"\>", ",", "\<\"Bd7\"\>", ",", "\<\"27.a5\"\>", 
+      ",", "\<\"Ba4\"\>", ",", "\<\"28.\"\>", ",", "\<\"Rd2\"\>", 
+      ",", "\<\"d3\"\>", ",", "\<\"29.Rxd3\"\>", ",", "\<\"Bb5\"\>", 
+      ",", "\<\"30.Rxd8+\"\>", ",", "\<\"Rxd8\"\>", ",", "\<\"31.Nf3\"\>", 
+      ",", "\<\"Bxb2\"\>", ",", "\<\"32.Rc7\"\>", ",", "\<\"Ba3\"\>", 
+      ",", "\<\"33.Rxb7\"\>", ",", "\<\"Rd1+\"\>", ",", "\<\"34.\"\>", 
+      ",", "\<\"Kg2\"\>", ",", "\<\"Bd6\"\>", ",", "\<\"35.Kh3\"\>", 
+      ",", "\<\"Rc1\"\>", ",", "\<\"36.Nd4\"\>", ",", "\<\"Bf1+\"\>", 
+      ",", "\<\"37.Bg2\"\>", ",", "\<\"Rc3+\"\>", ",", "\<\"38.f3\"\>", 
+      ",", "\<\"Bd3\"\>", ",", "\<\"39.Rb3\"\>", ",", "\<\"Rxb3\"\>", 
+      ",", "\<\"40.Nxb3\"\>", ",", "\<\"Bb4\"\>", ",", "\<\"41.f4\"\>", 
+      ",", "\<\"Bc4\"\>", ",", "\<\"42.Nd4\"\>", ",", "\<\"Bxa5\"\>", 
+      ",", "\<\"43.f5\"\>", ",", "\<\"Bc3\"\>", ",", "\<\"44.Nc6\"\>", 
+      ",", "\<\"a5\"\>", ",", "\<\"45.Nxa5\"\>", ",", "\<\"Bxa5\"\>", 
+      ",", "\<\"46.Be4\"\>", ",", "\<\"Bd5\"\>", ",", "\<\"47.\"\>", 
+      ",", "\<\"Bd3\"\>", ",", "\<\"Bc7\"\>", ",", "\<\"48.f6\"\>", 
+      ",", "\<\"Bf4\"\>", ",", "\<\"49.Kg4\"\>", ",", "\<\"Bxh2\"\>", 
+      ",", "\<\"50.g6\"\>", ",", "\<\"e5\"\>", ",", "\<\"51.Kf5\"\>", 
+      ",", "\<\"Be6+\"\>", ",", "\<\"52.Kg5\"\>", ",", "\<\"Bf4+\"\>", 
+      ",", "\<\"53.Kh5\"\>", ",", "\<\"Bd5\"\>", ",", "\<\"54.Kg4\"\>", 
+      ",", "\<\"fxg6\"\>", ",", "\<\"55.Bxg6\"\>", ",", "\<\"Be6+\"\>", 
+      ",", "\<\"56.Kf3\"\>", ",", "\<\"Bg5\"\>"}], "}"}]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.7558466964081507`*^9, 3.756025238287027*^9, 
+  3.756026130850054*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"a9899ef9-29a5-418f-be39-103c0e56b2e6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pgn", "=", 
+  RowBox[{"PGNconvert", "[", 
+   RowBox[{
+    RowBox[{"PGNfile", "[", "540", "]"}], "[", "\"\<PGN\>\"", "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{3.755846714855686*^9, 3.7560252463544188`*^9, 
+  3.756026135500396*^9},
+ CellLabel->"In[12]:=",ExpressionUUID->"5fa5572f-6a9a-4524-952a-453fa87f4226"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"4", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "6", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "6", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "3", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "b", ",", "4", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"queen", ",", "3", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "4", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "4", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "Chess`Private`short"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "Chess`Private`short"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"d", ",", "x", ",", "3", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "x", ",", "3", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "4", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"queen", ",", "3", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "5", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "x", ",", "5", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"queen", ",", "x", ",", "5", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "6", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"queen", ",", "8", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"c", ",", "x", ",", "4", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "4", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"8", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "4", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "x", ",", "8", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"g", ",", "x", ",", "8", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "a", ",", "3", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"queen", ",", "4", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"queen", ",", "x", ",", "8", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"queen", ",", "6", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"queen", ",", "x", ",", "6", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "x", ",", "6", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "5", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"e", ",", "x", ",", "6", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "x", ",", "6", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "5", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "4", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "2", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "8", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "5", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "4", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "1", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "4", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "x", ",", "4", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "2", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "x", ",", "4", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "x", ",", "4", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "6", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "x", ",", "2", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "3", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "1", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "x", ",", "2", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "4", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"king", ",", "7", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "4", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"king", ",", "8", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "3", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "4", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "6", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "7", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "3", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "4", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "2", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"rook", ",", "x", ",", "2", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "x", ",", "2", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "2", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "3", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "4", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "x", ",", "1", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "3", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "3", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"knight", ",", "x", ",", "1", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "x", ",", "1", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "5", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "4", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "4", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "3", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "6", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"king", ",", "7", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "x", ",", "8", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"king", ",", "6", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "5", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"king", ",", "7", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "6", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"king", ",", "8", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "4", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"king", ",", "7", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"f", ",", "x", ",", "7", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "x", ",", "7", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "5", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"king", ",", "6", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"bishop", ",", "7", ",", "5"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.7558467157531776`*^9, 3.756025247228938*^9, 
+  3.756026137345681*^9},
+ CellLabel->"Out[12]=",ExpressionUUID->"57773380-cc74-4cbd-9a82-66651eb55091"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Chess", "[", 
+  RowBox[{
+   RowBox[{"ShowBoard", "\[Rule]", "pgn"}], ",", 
+   RowBox[{"Interact", "\[Rule]", "False"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7555113396684866`*^9, 3.7555113400892286`*^9}, {
+  3.755511731018956*^9, 3.7555117316465693`*^9}, {3.7555126675811806`*^9, 
+  3.75551268055943*^9}, {3.7555357415766582`*^9, 3.7555357423062057`*^9}, {
+  3.755544802247079*^9, 3.755544803160528*^9}, {3.75557812090139*^9, 
+  3.7555781215969887`*^9}, {3.755609432494317*^9, 3.755609433324825*^9}, {
+  3.75561151981054*^9, 3.7556115204521737`*^9}, {3.755629002697006*^9, 
+  3.755629003682415*^9}, {3.755712484685854*^9, 3.755712485460416*^9}, {
+  3.7558369933199124`*^9, 3.755836994169427*^9}, {3.7558400265560102`*^9, 
+  3.7558400340007453`*^9}, {3.755842790160768*^9, 3.755842791105472*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"b18b3d3a-b354-4c5d-8a6d-a2d468b0de8c"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{
+      ButtonBox[
+       "\"Restart\"", ButtonFunction :> Chess`Startposition, Appearance -> 
+        Automatic, Evaluator -> Automatic, Method -> "Preemptive"],ButtonBox[
+       "\"Back\"", ButtonFunction :> If[Length[Chess`Movelist] != 0, Switch[
+            Part[
+             Last[Chess`Movelist], 1], 1, Chess`piece1[Chess`pos] = Most[
+              Chess`piece1[Chess`pos]], 2, Chess`piece2[Chess`pos] = Most[
+              Chess`piece2[Chess`pos]], 3, Chess`piece3[Chess`pos] = Most[
+              Chess`piece3[Chess`pos]], 4, Chess`piece4[Chess`pos] = Most[
+              Chess`piece4[Chess`pos]], 5, Chess`piece5[Chess`pos] = Most[
+              Chess`piece5[Chess`pos]], 6, Chess`piece6[Chess`pos] = Most[
+              Chess`piece6[Chess`pos]], 7, Chess`piece7[Chess`pos] = Most[
+              Chess`piece7[Chess`pos]], 8, Chess`piece8[Chess`pos] = Most[
+              Chess`piece8[Chess`pos]], 9, Chess`piece9[Chess`pos] = Most[
+              Chess`piece9[Chess`pos]], 10, Chess`piece10[Chess`pos] = Most[
+              Chess`piece10[Chess`pos]], 11, Chess`piece11[Chess`pos] = Most[
+              Chess`piece11[Chess`pos]], 12, Chess`piece12[Chess`pos] = Most[
+              Chess`piece12[Chess`pos]], 13, Chess`piece13[Chess`pos] = Most[
+              Chess`piece13[Chess`pos]], 14, Chess`piece14[Chess`pos] = Most[
+              Chess`piece14[Chess`pos]], 15, Chess`piece15[Chess`pos] = Most[
+              Chess`piece15[Chess`pos]], 16, Chess`piece16[Chess`pos] = Most[
+              Chess`piece16[Chess`pos]], 17, Chess`piece17[Chess`pos] = Most[
+              Chess`piece17[Chess`pos]], 18, Chess`piece18[Chess`pos] = Most[
+              Chess`piece18[Chess`pos]], 19, Chess`piece19[Chess`pos] = Most[
+              Chess`piece19[Chess`pos]], 20, Chess`piece20[Chess`pos] = Most[
+              Chess`piece20[Chess`pos]], 21, Chess`piece21[Chess`pos] = Most[
+              Chess`piece21[Chess`pos]], 22, Chess`piece22[Chess`pos] = Most[
+              Chess`piece22[Chess`pos]], 23, Chess`piece23[Chess`pos] = Most[
+              Chess`piece23[Chess`pos]], 24, Chess`piece24[Chess`pos] = Most[
+              Chess`piece24[Chess`pos]], 25, Chess`piece25[Chess`pos] = Most[
+              Chess`piece25[Chess`pos]], 26, Chess`piece26[Chess`pos] = Most[
+              Chess`piece26[Chess`pos]], 27, Chess`piece27[Chess`pos] = Most[
+              Chess`piece27[Chess`pos]], 28, Chess`piece28[Chess`pos] = Most[
+              Chess`piece28[Chess`pos]], 29, Chess`piece29[Chess`pos] = Most[
+              Chess`piece29[Chess`pos]], 30, Chess`piece30[Chess`pos] = Most[
+              Chess`piece30[Chess`pos]], 31, Chess`piece31[Chess`pos] = Most[
+              Chess`piece31[Chess`pos]], 32, Chess`piece32[Chess`pos] = Most[
+              Chess`piece32[Chess`pos]]]; If[
+            NumberQ[
+             Part[
+              Last[Chess`Movelist], 2, 3]], Switch[
+              Part[
+               Last[Chess`Movelist], 2, 3], 1, Chess`piece1[Chess`pos] = Most[
+                Chess`piece1[Chess`pos]], 2, Chess`piece2[Chess`pos] = Most[
+                Chess`piece2[Chess`pos]], 3, Chess`piece3[Chess`pos] = Most[
+                Chess`piece3[Chess`pos]], 4, Chess`piece4[Chess`pos] = Most[
+                Chess`piece4[Chess`pos]], 5, Chess`piece5[Chess`pos] = Most[
+                Chess`piece5[Chess`pos]], 6, Chess`piece6[Chess`pos] = Most[
+                Chess`piece6[Chess`pos]], 7, Chess`piece7[Chess`pos] = Most[
+                Chess`piece7[Chess`pos]], 8, Chess`piece8[Chess`pos] = Most[
+                Chess`piece8[Chess`pos]], 9, Chess`piece9[Chess`pos] = Most[
+                Chess`piece9[Chess`pos]], 10, Chess`piece10[Chess`pos] = Most[
+                Chess`piece10[Chess`pos]], 11, Chess`piece11[Chess`pos] = Most[
+                Chess`piece11[Chess`pos]], 12, Chess`piece12[Chess`pos] = Most[
+                Chess`piece12[Chess`pos]], 13, Chess`piece13[Chess`pos] = Most[
+                Chess`piece13[Chess`pos]], 14, Chess`piece14[Chess`pos] = Most[
+                Chess`piece14[Chess`pos]], 15, Chess`piece15[Chess`pos] = Most[
+                Chess`piece15[Chess`pos]], 16, Chess`piece16[Chess`pos] = Most[
+                Chess`piece16[Chess`pos]], 17, Chess`piece17[Chess`pos] = Most[
+                Chess`piece17[Chess`pos]], 18, Chess`piece18[Chess`pos] = Most[
+                Chess`piece18[Chess`pos]], 19, Chess`piece19[Chess`pos] = Most[
+                Chess`piece19[Chess`pos]], 20, Chess`piece20[Chess`pos] = Most[
+                Chess`piece20[Chess`pos]], 21, Chess`piece21[Chess`pos] = Most[
+                Chess`piece21[Chess`pos]], 22, Chess`piece22[Chess`pos] = Most[
+                Chess`piece22[Chess`pos]], 23, Chess`piece23[Chess`pos] = Most[
+                Chess`piece23[Chess`pos]], 24, Chess`piece24[Chess`pos] = Most[
+                Chess`piece24[Chess`pos]], 25, Chess`piece25[Chess`pos] = Most[
+                Chess`piece25[Chess`pos]], 26, Chess`piece26[Chess`pos] = Most[
+                Chess`piece26[Chess`pos]], 27, Chess`piece27[Chess`pos] = Most[
+                Chess`piece27[Chess`pos]], 28, Chess`piece28[Chess`pos] = Most[
+                Chess`piece28[Chess`pos]], 29, Chess`piece29[Chess`pos] = Most[
+                Chess`piece29[Chess`pos]], 30, Chess`piece30[Chess`pos] = Most[
+                Chess`piece30[Chess`pos]], 31, Chess`piece31[Chess`pos] = Most[
+                Chess`piece31[Chess`pos]], 32, Chess`piece32[Chess`pos] = Most[
+                Chess`piece32[Chess`pos]]]; 
+            Chess`Capturelist = Most[Chess`Capturelist]]; If[
+            And[Part[
+               Last[Chess`Movelist], 2, 3] === "0-0", Part[
+               Last[Chess`Movelist], 1] === 16], Chess`piece14[Chess`pos] = 
+            Most[
+              Chess`piece14[Chess`pos]]]; If[
+            And[Part[
+               Last[Chess`Movelist], 2, 3] === "0-0-0", Part[
+               Last[Chess`Movelist], 1] === 16], Chess`piece13[Chess`pos] = 
+            Most[
+              Chess`piece13[Chess`pos]]]; If[
+            And[Part[
+               Last[Chess`Movelist], 2, 3] === "0-0", Part[
+               Last[Chess`Movelist], 1] === 32], Chess`piece30[Chess`pos] = 
+            Most[
+              Chess`piece30[Chess`pos]]]; If[
+            And[Part[
+               Last[Chess`Movelist], 2, 3] === "0-0-0", Part[
+               Last[Chess`Movelist], 1] === 32], Chess`piece29[Chess`pos] = 
+            Most[
+              Chess`piece29[Chess`pos]]]; 
+          If[Chess`Movelist != {}, Chess`Movelist = Most[Chess`Movelist]]; 
+          Chess`whiteChoices; Chess`blackChoices; 
+          Chess`piece16[Chess`MoveChoices] = Complement[
+             Chess`piece16[Chess`MoveChoices], 
+             Union[
+              Flatten[
+               DeleteCases[
+                Map[Chess`blackoptionlist[#]& , 
+                 Select[
+                  Map[#[Chess`id]& , 
+                   Select[
+                   Chess`Pieces, Not[#[Chess`status] === Chess`pawn]& ]], # > 
+                  16& ]], 
+                Blank[Missing]], 1]], Chess`bPawnStrikes]; 
+          Chess`piece32[Chess`MoveChoices] = Complement[
+             Chess`piece32[Chess`MoveChoices], 
+             Union[
+              Flatten[
+               DeleteCases[
+                Map[Chess`whiteoptionlist[#]& , 
+                 Select[
+                  Map[#[Chess`id]& , 
+                   Select[
+                   Chess`Pieces, Not[#[Chess`status] === Chess`pawn]& ]], # < 
+                  17& ]], 
+                Blank[Missing]], 1]], Chess`wPawnStrikes]; 
+          Chess`Private`castle = {}; Null], Appearance -> Automatic, 
+        Evaluator -> Automatic, Method -> "Preemptive"],ButtonBox[
+       "\"Next\"", ButtonFunction :> 
+        If[Length[Chess`Private`showc] > Length[Chess`Movelist], 
+          Chess`Move[
+           Part[
+            Chess`MoveFromPGN[
+             Part[Chess`Private`showc, Length[Chess`Movelist] + 1]], 1]]], 
+        Appearance -> Automatic, Evaluator -> Automatic, Method -> 
+        "Preemptive"],ButtonBox["\"End\"", ButtonFunction :> Map[Chess`Move[
+           Part[
+            Chess`MoveFromPGN[#], 1]]& , 
+          Drop[Chess`Private`showc, 
+           Length[Chess`Movelist]]], Appearance -> Automatic, Evaluator -> 
+        Automatic, Method -> "Preemptive"]},
+      "RowDefault"]},
+    {
+     DynamicModuleBox[{Chess`Private`pt$$ = {4.9, 1.9}}, 
+      LocatorPaneBox[Dynamic[Chess`Private`pt$$], 
+       TagBox[GridBox[{
+          {
+           DynamicBox[ToBoxes[Chess`Private`test = Select[Chess`Pieces, Last[
+                  #[Chess`pos]] === 
+                Map[Floor, Chess`Private`pt$$] + {1, 1}& ]; If[
+               And[Length[Chess`Private`test] > 0, 
+                Chess`Inturn[
+                 Part[Chess`Private`test, 1][Chess`id]]], 
+               Chess`Private`pno = Part[Chess`Private`test, 1][Chess`id]; 
+               Chess`Private`movopt = 
+                Part[Chess`Private`test, 1][Chess`MoveChoices]; 
+               Chess`Private`test2 = Chess`Private`test; 
+               Chess`Private`pt1 = Last[
+                  Part[Chess`Private`test2, 1][Chess`pos]], 
+               Chess`Private`pt1 = {}]; If[
+               MemberQ[
+               Chess`Private`movopt, Map[Floor, Chess`Private`pt$$] + {1, 1}],
+                Chess`Private`pt2 = Map[Floor, Chess`Private`pt$$] + {1, 1}, 
+               Chess`Private`pt2 = {}]; Show[{
+                Chess`Chessboard[
+                Chess`ShowPieces -> None, ImageSize -> Chess`Private`bsizep, 
+                 Chess`BoardColour -> Chess`Private`colp], 
+                If[
+                 And[Length[Chess`Private`pt2] > 0, Chess`Private`interp], 
+                 Chess`Move[
+                  Chess`Private`pno, Chess`Private`pt2, 
+                   Chess`ShowBoard -> {{4, 4}, {Chess`knight, 6, 6}, {
+                    Chess`knight, 6, 3}, {4, 5}, {3, 4}, {5, 6}, {
+                    Chess`knight, 3, 3}, {3, 6}, {5, 3}, {
+                    Chess`knight, $CellContext`b, 4, 7}, {
+                    Chess`queen, 3, 2}, {Chess`bishop, 4, 6}, {
+                    Chess`bishop, 4, 3}, {0, Chess`Private`short}, {
+                    0, Chess`Private`short}, {$CellContext`d, $CellContext`x, 
+                    3, 4}, {Chess`bishop, $CellContext`x, 3, 4}, {1, 6}, {1, 
+                    4}, {3, 5}, {Chess`rook, 4, 1}, {Chess`queen, 3, 7}, {
+                    Chess`knight, 5, 4}, {
+                    Chess`knight, $CellContext`x, 5, 4}, {
+                    Chess`queen, $CellContext`x, 5, 4}, {
+                    Chess`knight, 6, 6}, {
+                    Chess`queen, 8, 4}, {$CellContext`c, $CellContext`x, 4, 
+                    4}, {Chess`bishop, 4, 3}, {8, 6}, {5, 4}, {
+                    Chess`knight, 4, 7}, {
+                    Chess`bishop, $CellContext`x, 8, 
+                    6}, {$CellContext`g, $CellContext`x, 8, 6}, {
+                    Chess`rook, $CellContext`a, 3, 1}, {Chess`queen, 4, 8}, {
+                    Chess`queen, $CellContext`x, 8, 6}, {Chess`queen, 6, 6}, {
+                    Chess`queen, $CellContext`x, 6, 6}, {
+                    Chess`knight, $CellContext`x, 6, 6}, {5, 5}, {
+                    Chess`bishop, 5, 7}, {$CellContext`e, $CellContext`x, 6, 
+                    6}, {Chess`bishop, $CellContext`x, 6, 6}, {
+                    Chess`bishop, 5, 4}, {Chess`rook, 4, 8}, {7, 4}, {
+                    Chess`rook, 2, 8}, {7, 5}, {Chess`bishop, 8, 8}, {
+                    Chess`knight, 5, 1}, {Chess`bishop, 4, 7}, {1, 5}, {
+                    Chess`bishop, 1, 4}, {Chess`rook, 4, 2}, {4, 3}, {
+                    Chess`rook, $CellContext`x, 4, 3}, {Chess`bishop, 2, 5}, {
+                    Chess`rook, $CellContext`x, 4, 8}, {
+                    Chess`rook, $CellContext`x, 4, 8}, {Chess`knight, 6, 3}, {
+                    Chess`bishop, $CellContext`x, 2, 2}, {Chess`rook, 3, 7}, {
+                    Chess`bishop, 1, 3}, {Chess`rook, $CellContext`x, 2, 7}, {
+                    Chess`rook, 4, 1}, {Chess`king, 7, 2}, {
+                    Chess`bishop, 4, 6}, {Chess`king, 8, 3}, {
+                    Chess`rook, 3, 1}, {Chess`knight, 4, 4}, {
+                    Chess`bishop, 6, 1}, {Chess`bishop, 7, 2}, {
+                    Chess`rook, 3, 3}, {6, 3}, {Chess`bishop, 4, 3}, {
+                    Chess`rook, 2, 3}, {Chess`rook, $CellContext`x, 2, 3}, {
+                    Chess`knight, $CellContext`x, 2, 3}, {
+                    Chess`bishop, 2, 4}, {6, 4}, {Chess`bishop, 3, 4}, {
+                    Chess`knight, 4, 4}, {
+                    Chess`bishop, $CellContext`x, 1, 5}, {6, 5}, {
+                    Chess`bishop, 3, 3}, {Chess`knight, 3, 6}, {1, 5}, {
+                    Chess`knight, $CellContext`x, 1, 5}, {
+                    Chess`bishop, $CellContext`x, 1, 5}, {
+                    Chess`bishop, 5, 4}, {Chess`bishop, 4, 5}, {
+                    Chess`bishop, 4, 3}, {Chess`bishop, 3, 7}, {6, 6}, {
+                    Chess`bishop, 6, 4}, {Chess`king, 7, 4}, {
+                    Chess`bishop, $CellContext`x, 8, 2}, {7, 6}, {5, 5}, {
+                    Chess`king, 6, 5}, {Chess`bishop, 5, 6}, {
+                    Chess`king, 7, 5}, {Chess`bishop, 6, 4}, {
+                    Chess`king, 8, 5}, {Chess`bishop, 4, 5}, {
+                    Chess`king, 7, 4}, {$CellContext`f, $CellContext`x, 7, 
+                    6}, {Chess`bishop, $CellContext`x, 7, 6}, {
+                    Chess`bishop, 5, 6}, {Chess`king, 6, 3}, {
+                    Chess`bishop, 7, 5}}, ImageSize -> 240, Chess`PieceSize -> 
+                   Automatic, Chess`BoardColour -> 
+                   RGBColor[0.8196, 0.5451, 0.2784], Chess`ShowPieces -> All, 
+                   Chess`PawnConvert -> Chess`MakeQueen, Chess`ShowPGN -> 
+                   True, Chess`Interact -> False]; Graphics[{
+                    Opacity[0.5], 
+                    Lighter[Green], 
+                    Rectangle[Chess`Private`pt2 - {1, 1}, Chess`Private`pt2], 
+                    Rectangle[
+                    Chess`Private`pt3 - {1, 1}, Chess`Private`pt3]}], 
+                 If[
+                  And[Length[Chess`Private`pt1] > 0, Chess`Private`interp], 
+                  Graphics[{
+                    Opacity[0.5], 
+                    Lighter[Red], 
+                    Rectangle[
+                    Chess`Private`pt1 - {1, 1}, Chess`Private`pt1]}], 
+                  Graphics[{}]]], 
+                Map[
+                Chess`place[#, Chess`PieceSize -> 
+                  If[Chess`Private`psizep === Automatic, Chess`Private`bsizep/
+                    10, Chess`Private`psizep]]& , 
+                 Switch[Chess`Private`inclp, All, 
+                  Range[32], White, 
+                  Range[16], Black, 
+                  Range[17, 32], 
+                  Blank[], {}]], 
+                If[
+                 And[Length[Chess`Private`pt1] > 0, Chess`Private`interp], 
+                 Chess`Private`pt3 = Chess`Private`pt1; Graphics[{
+                    Opacity[0.8], 
+                    Lighter[Green], 
+                    PointSize[0.05], 
+                    Map[Point[# - {0.5, 0.5}]& , 
+                    (#[Chess`MoveChoices]& )[
+                    Part[Chess`Private`test2, 1]]]}], 
+                 Graphics[{}]]}], StandardForm],
+            ImageSizeCache->{240., {124., 130.}}]}
+         },
+         AutoDelete->False,
+         GridBoxAlignment->{"Rows" -> {{Top}}},
+         GridBoxItemSize->{
+          "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+        "Grid"],
+       Appearance->None],
+      DynamicModuleValues:>{}]}
+   },
+   DefaultBaseStyle->"Column",
+   GridBoxAlignment->{"Columns" -> {{Left}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Column"]], "Output",
+ CellChangeTimes->{3.755841737286722*^9, 3.7558418577112837`*^9, 
+  3.7558419335093718`*^9, 3.7558427507389154`*^9, 3.7558427937831144`*^9, 
+  3.75584284602387*^9, 3.7558428798686876`*^9, 3.755842972575839*^9, 
+  3.7558467196379724`*^9, 3.75602526348063*^9, 3.7560261407057805`*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"2e4574e9-da25-4d16-8e6f-5ad340cb3f0f"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1151, 919},
+WindowMargins->{{Automatic, -2877}, {Automatic, 476}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 164, 3, 67, "Section",ExpressionUUID->"c3ea2222-f9e7-4758-b001-77719a420cf0"],
+Cell[747, 27, 661, 9, 28, "Input",ExpressionUUID->"252768cf-c520-4fdd-8334-1973e2492331"],
+Cell[1411, 38, 711, 15, 28, "Input",ExpressionUUID->"db3a34a5-fdac-413e-a4bb-fe933588c3d9"],
+Cell[CellGroupData[{
+Cell[2147, 57, 266, 4, 28, "Input",ExpressionUUID->"0f0531bb-cfcd-46b7-81ed-9993f0eb6a54"],
+Cell[2416, 63, 243, 4, 22, "Print",ExpressionUUID->"01b45825-04a0-423d-9228-9b6e9990685f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2696, 72, 288, 5, 28, "Input",ExpressionUUID->"68c6df99-afec-443d-acf7-f16a9a1028dc"],
+Cell[2987, 79, 3841, 58, 147, "Output",ExpressionUUID->"a9899ef9-29a5-418f-be39-103c0e56b2e6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6865, 142, 339, 8, 28, "Input",ExpressionUUID->"5fa5572f-6a9a-4524-952a-453fa87f4226"],
+Cell[7207, 152, 8363, 229, 242, "Output",ExpressionUUID->"57773380-cc74-4cbd-9a82-66651eb55091"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15607, 386, 902, 14, 28, "Input",ExpressionUUID->"b18b3d3a-b354-4c5d-8a6d-a2d468b0de8c"],
+Cell[16512, 402, 16144, 282, 309, "Output",ExpressionUUID->"2e4574e9-da25-4d16-8e6f-5ad340cb3f0f"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
