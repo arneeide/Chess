@@ -43,7 +43,7 @@ Chess[ShowBoard -> pgn, Interact -> False]
 
 ## Embedded features
 Standard rules of piece moving are installed, including castling, en passant, and the conversion of pawns to officers (standard choice is queen).
-Interactive use of the chessboard is included, also a preliminary PGN reading feature (see notebook for details). The chessboard may be displayed in different ways by changing default option values.
+Interactive use of the chessboard is included, also a PGN reading feature (see above). The chessboard may be displayed in different ways by changing default option values.
 
 ## Missing parts
 A number of issues are still to be solved:
