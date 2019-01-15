@@ -3,9 +3,9 @@ A chessboard user interface created in Mathematica
 
 ## Installation
 Load the Chess` package embedded in the file "Chess.wl" into a Mathematica notebook.
-
+```mathematica
  Needs["Chess`"]
-
+```
 ## Usage
 So far, no manual has been made, as the work is ongoing. A brief introduction to the capability of the package is however provided in the attached notebook "Chess_package.nb".
 
