@@ -12,7 +12,7 @@ PGN files may be downloaded from the internet, e.g.:
 ```mathematica
 kasparov = Import["http://chessproblem.my-free-games.com/PGN/Kasparov.zip", "*.pgn"][[1]];
 ```
-and PGNs is found by
+and PGNs are found by
 ```mathematica
 MakePGNfiles[kasparov]
 549 PGN files are available (PGNfile[no])
