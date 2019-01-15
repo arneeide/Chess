@@ -603,23 +603,16 @@ blackChoices;
 )
 
 Pieces := Symbol["piece"<>ToString[#]]&/@Range[0,33];
-
 wPieces := Symbol["piece"<>ToString[#]]&/@Range[0,16];
-
 bPieces := Symbol["piece"<>ToString[#]]&/@Range[17,33];
-
 activePieces := Select[{#[id],Last[#[pos]]}&/@(Symbol["piece"<>ToString[#]]&/@Range[32]),Length[#[[2]]]===2&]
 
 (* Checking if same position occurs for several Pieces *)
-
 validposQ:=Length@activePieces===Length[Union[Last/@activePieces]]
 
 whitepos:=Select[Last[#[pos]]&/@ Rest[wPieces],Length[#]===2&];
-
 blackpos:=Select[Last[#[pos]]&/@ Most[bPieces],Length[#]===2&];
-
 whitelongpos:=Select[{#[id],Last[#[pos]]}&/@wPieces,#[[2]]!={}&]
-
 blacklongpos:=Select[{#[id],Last[#[pos]]}&/@bPieces,#[[2]]!={}&]
 
 (* Unoccupied positions *)
